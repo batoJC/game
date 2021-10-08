@@ -59,6 +59,7 @@ public class MoveInPoints : MonoBehaviour
         }
 
         this.point = (GameObject)this.points[this.indexPoint];
+        this.personaje.transform.LookAt(this.point.transform);
 
         return true;
     }
