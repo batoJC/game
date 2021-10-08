@@ -39,8 +39,6 @@ public class MoveInPoints : MonoBehaviour
             this.nextPoint();
         }
 
-
-
         var vector = Vector3.MoveTowards(this.personaje.transform.position,this.point.transform.position, Time.deltaTime * smooth);
         this.personaje.transform.position = vector;
     }
