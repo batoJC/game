@@ -2015,7 +2015,7 @@ AnimatorStateMachine:
     m_Position: {x: 336, y: 36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110281324}
-    m_Position: {x: 620, y: -100, z: 0}
+    m_Position: {x: 636, y: -96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110223516}
     m_Position: {x: 636, y: -24, z: 0}

@@ -19,8 +19,7 @@ public class Creature : MonoBehaviour
     private Vector3 endPoint;
     private Vector3 startPoint;
     private Vector3 nextPoint;
-    private bool walk = true;
-    private bool directionFlag = true;
+    private bool flagDirection = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,32 +37,23 @@ public class Creature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //anim.SetInteger ("moving", 0); // stand still
-
+        //anim.SetInteger ("moving", 0); // idle
         anim.SetInteger ("moving", 1);//walk
-		runSpeed = 1;
 
+		//runSpeed = 1;
         float distance = Vector3.Distance(this.transform.position,nextPoint);
 
         if(distance < 1.0){
-            int times = 1;
-            do{
-                transform.Rotate(0, 550 * Time.deltaTime, 0);
-                times++;
-            }
-            while(times <= 10);
-
-            if(directionFlag){
+            if (flagDirection)
+            {
                 nextPoint = startPoint;
-                directionFlag = false;
+                flagDirection = false; 
             }
             else{
                 nextPoint = endPoint;
-                directionFlag = true;
+                flagDirection = true;
             }
-            
+            transform.LookAt(nextPoint); 
         }
-        
-
     }
 }
