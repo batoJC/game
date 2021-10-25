@@ -7,6 +7,8 @@ using UnityEngine;
 public class RotatableObject : MonoBehaviour
 {
 
+    AudioSource audioSource;
+    public GameObject personaje;
     public int Speed;
 
     //Axis in which the objects move
@@ -17,13 +19,15 @@ public class RotatableObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+         // if already in the point increment index
+        var distance = (this.personaje.transform.position - this.transform.position).magnitude;
+        audioSource.mute = distance > 10;
        Rotate();
     }
 
