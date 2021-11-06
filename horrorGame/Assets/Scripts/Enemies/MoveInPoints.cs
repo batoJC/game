@@ -108,14 +108,17 @@ public class MoveInPoints : MonoBehaviour
     }
 
     // atacar desde cierta distancia
-    if (hit.distance <= 4f && vision)
+    if (hit.distance <= 2f && vision)
     {
+      this.personaje.GetComponent<AudioSource>().Play();
       attack();
+      return;
     }
 
     // perseguirlo si ha sido visto
     if (hit.distance < 20f && this.state == State.following)
     {
+      this.personaje.GetComponent<AudioSource>().Play();
       Follow();
     }
 
