@@ -46,16 +46,17 @@ public class Tracking : MonoBehaviour
         // si ya está muy lejos el jugador y no puede verlo, seguir patrullando
         if(hit.distance >= 20f){
             this.gameObject.GetComponent<Creature>().SetPatrolling(true);
+            this.GetComponent<AudioSource>().Stop();
         }
 
-        
+
     }
 
     void Follow(){
 
         anim.SetInteger("moving",2); //run
         this.GetComponent<AudioSource>().Play();
-        transform.LookAt(Enemy.transform.position); 
+        transform.LookAt(Enemy.transform.position);
     }
 
     void Hit(){
