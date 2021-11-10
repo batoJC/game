@@ -72,8 +72,15 @@ public class Tracking : MonoBehaviour
         {
             Stop();
             stop = true;
-            print("quitar vida");
+            print("daño al jugador");
             //this.GetComponent<AudioSource>().Play();
+        }
+        
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if(other.name == "FPSController"){
+            print("daño al jugador");
         }
     }
 }
