@@ -13,6 +13,9 @@ public class Tracking : MonoBehaviour
     private UnityEngine.AI.NavMeshHit hit;
     private bool stop = false;
 
+    [Tooltip("Porcentaje de daño que causa este enemigo al jugador")]
+    public float damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,28 +26,33 @@ public class Tracking : MonoBehaviour
     void Update()
     {
 
-        anim.SetInteger("attack",0); //no attack;
+        anim.SetInteger("attack", 0); //no attack;
 
         vision = UnityEngine.AI.NavMesh.Raycast(transform.position, Enemy.transform.position, out hit, UnityEngine.AI.NavMesh.AllAreas);
 
 
 
         // atacar desde cierta distancia
-        if(hit.distance <= 4f && !vision){
+        if (hit.distance <= 4f && !vision)
+        {
             Hit();
         }
-        else{
+        else
+        {
             stop = false;
         }
 
 
         // perseguirlo si ha sido visto
-        if(hit.distance < 20f && !vision && !stop){
+        if (hit.distance < 20f && !vision && !stop)
+        {
             this.gameObject.GetComponent<Creature>().SetPatrolling(false);
             Follow();
         }
         // si ya está muy lejos el jugador y no puede verlo, seguir patrullando
-        if(hit.distance >= 20f){
+        if (hit.distance >= 20f)
+        {
+            anim.SetInteger("moving", 1); /// walk
             this.gameObject.GetComponent<Creature>().SetPatrolling(true);
             this.GetComponent<AudioSource>().Stop();
         }
@@ -52,35 +60,43 @@ public class Tracking : MonoBehaviour
 
     }
 
-    void Follow(){
+    void Follow()
+    {
 
-        anim.SetInteger("moving",2); //run
+        anim.SetInteger("moving", 2); //run
         this.GetComponent<AudioSource>().Play();
         transform.LookAt(Enemy.transform.position);
     }
 
-    void Hit(){
-        anim.SetInteger("attack",1);
+    void Hit()
+    {
+        anim.SetInteger("attack", 1);
     }
 
-    void Stop(){
-        anim.SetInteger("moving",0);//idle
+    void Stop()
+    {
+        anim.SetInteger("moving", 0);//idle
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.name == "FPSController")
         {
             Stop();
             stop = true;
             print("daño al jugador");
+            other.gameObject.GetComponentInChildren<HealthBar>().Damage(damage);
             //this.GetComponent<AudioSource>().Play();
         }
-        
+
     }
 
-    private void OnTriggerStay(Collider other) {
-        if(other.name == "FPSController"){
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.name == "FPSController")
+        {
             print("daño al jugador");
+            other.gameObject.GetComponentInChildren<HealthBar>().Damage(damage);
         }
     }
 }

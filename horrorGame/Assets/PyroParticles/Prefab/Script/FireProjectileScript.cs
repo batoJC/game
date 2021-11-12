@@ -72,8 +72,9 @@ namespace DigitalRuby.PyroParticles
             if (collided)
             {
                 // already collided, don't do anything
-                
-                if(c.collider.name == "hor_mon_1.2_5"){
+
+                if (c.collider.name == "creature1")
+                {
                     print("daño criatura ");
                 };
                 return;
