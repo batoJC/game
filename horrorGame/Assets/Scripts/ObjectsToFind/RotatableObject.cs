@@ -11,22 +11,30 @@ public class RotatableObject : MonoBehaviour
     public GameObject personaje;
     public int Speed;
 
+    public int damage = 30;
+    public int health = 30;
+
     //Axis in which the objects move
     //1,2,3 mean X,Y,Z respectively
     public char Axis;
+    private HealthBar healthSript;
 
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        healthSript = this.personaje.GetComponent<HealthBar>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
          // if already in the point increment index
         var distance = (this.personaje.transform.position - this.transform.position).magnitude;
+
         audioSource.mute = distance > 10;
        Rotate();
     }
@@ -44,6 +52,13 @@ public class RotatableObject : MonoBehaviour
         //Rotate in Z
         if(char.ToLower(Axis) == 'z'){
             transform.Rotate(0, 0, Time.deltaTime * Speed);
+        }
+    }
+
+    void OnTriggerEnter(Collider other){
+        if(other.name == "FPSController"){
+            healthSript.Heal(health);
+            Destroy(gameObject,1);
         }
     }
 }
