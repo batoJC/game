@@ -50,6 +50,9 @@ namespace DigitalRuby.PyroParticles
 
         private bool collided;
 
+        [Tooltip("Cantidad de daño que causa este proyectil a los enemigos")]
+        private float damage = 33.33f;
+
 
         private IEnumerator SendCollisionAfterDelay()
         {
@@ -73,9 +76,10 @@ namespace DigitalRuby.PyroParticles
             {
                 // already collided, don't do anything
 
-                if (c.collider.name == "creature1")
+                if (c.collider.tag == "Enemy")
                 {
-                    print("daño criatura ");
+                    c.gameObject.GetComponent<EnemyHealth>().Damage(damage);
+                    
                 };
                 return;
             }

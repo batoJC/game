@@ -44,7 +44,7 @@ public class Tracking : MonoBehaviour
 
 
         // perseguirlo si ha sido visto
-        if (hit.distance < 20f && !vision && !stop)
+        if (hit.distance < 20f && !vision && !stop && !anim.GetBool("die"))
         {
             this.gameObject.GetComponent<Creature>().SetPatrolling(false);
             Follow();
@@ -84,19 +84,10 @@ public class Tracking : MonoBehaviour
         {
             Stop();
             stop = true;
-            print("daño al jugador");
-            other.gameObject.GetComponentInChildren<HealthBar>().Damage(damage);
-            //this.GetComponent<AudioSource>().Play();
+            
         }
 
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.name == "FPSController")
-        {
-            print("daño al jugador");
-            other.gameObject.GetComponentInChildren<HealthBar>().Damage(damage);
-        }
-    }
+    
 }

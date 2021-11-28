@@ -116,7 +116,7 @@ public class MoveInPoints : MonoBehaviour
     }
 
     // perseguirlo si ha sido visto
-    if (hit.distance < 20f && this.state == State.following)
+    if (hit.distance < 20f && this.state == State.following && !anim.GetBool("die"))
     {
       this.personaje.GetComponent<AudioSource>().Play();
       Follow();

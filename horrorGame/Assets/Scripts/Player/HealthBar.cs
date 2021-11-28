@@ -45,7 +45,14 @@ public class HealthBar : MonoBehaviour
 
     public void Damage(float damagePoints)
     {
-        if (health > 0) health -= damagePoints;
+        if (health > 0) {
+            health -= damagePoints;
+        }
+        else{
+            
+            //Reiniciar Juego en caso de que se acabe la vida
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        };
     }
 
     public void Heal(float healingPoints)

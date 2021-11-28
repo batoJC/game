@@ -20,7 +20,7 @@ public class Creature : MonoBehaviour
     void Start()
     {
 
-       
+
         anim = GetComponent<Animator>();
         //w_sp = speed; //read walk speed
 		//r_sp = runSpeed; //read run speed
@@ -56,6 +56,8 @@ public class Creature : MonoBehaviour
             
         }        
     }
+
+     
 
     public bool GetPatrolling(){
         return this.patrolling;
