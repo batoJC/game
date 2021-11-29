@@ -80,7 +80,10 @@ namespace DigitalRuby.PyroParticles
                 {
                     c.gameObject.GetComponent<EnemyHealth>().Damage(damage);
                     
-                };
+                }
+                if(c.collider.name == "REAPER_LEGACY"){
+                    c.gameObject.GetComponent<HealthBar>().Damage(damage/100);
+                }
                 return;
             }
 

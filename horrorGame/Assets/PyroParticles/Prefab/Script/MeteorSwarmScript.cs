@@ -171,6 +171,7 @@ namespace DigitalRuby.PyroParticles
 
         public void HandleCollision(GameObject obj, Collision col)
         {
+
             Renderer r = obj.GetComponent<Renderer>();
             if (r == null)
             {
@@ -205,6 +206,14 @@ namespace DigitalRuby.PyroParticles
 
             StartCoroutine(CleanupMeteor(0.1f, obj));
             GameObject.Destroy(obj, 4.0f);
+
+            if(col.collider.name == "REAPER_LEGACY"){
+               col.gameObject.GetComponent<HealthBar>().Damage(5.0f);
+              
+            }
+            HealthBar[] bars = GameObject.Find("FirstPersonCharacter").GetComponents<HealthBar>();
+            bars[1].Damage(0.2f);
+            
         }
     }
 }

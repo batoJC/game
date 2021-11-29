@@ -79,7 +79,7 @@ namespace DigitalRuby.PyroParticles
         private void UpdateMouseLook()
         {
             //if(!MouseLookToggle.isOn)
-            if (!false)
+            if (true)
             //if(false)
             {
                 return;
@@ -120,11 +120,19 @@ namespace DigitalRuby.PyroParticles
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                StartCurrent();
+                HealthBar[] bars = GameObject.Find("FirstPersonCharacter").GetComponents<HealthBar>();
+                if(Prefabs[currentPrefabIndex].name == "MeteorSwarm" && bars[1].GetHealth() > 0){
+                    StartCurrent();
+                }
+                if(Prefabs[currentPrefabIndex].name != "MeteorSwarm"){
+                    StartCurrent();
+                }
+                   
             }
-            else if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.KeypadPlus))
+            else if (Input.GetKeyDown(KeyCode.P))
             {
                 NextPrefab();
+                
             }
             else if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
             {

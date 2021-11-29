@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 //script de seguimiento del enemigo al jugador
 public class Tracking : MonoBehaviour
@@ -10,7 +11,7 @@ public class Tracking : MonoBehaviour
 
     public GameObject Enemy;
     private bool vision;
-    private UnityEngine.AI.NavMeshHit hit;
+    private NavMeshHit hit;
     private bool stop = false;
 
     [Tooltip("Porcentaje de daño que causa este enemigo al jugador")]
@@ -28,7 +29,7 @@ public class Tracking : MonoBehaviour
 
         anim.SetInteger("attack", 0); //no attack;
 
-        vision = UnityEngine.AI.NavMesh.Raycast(transform.position, Enemy.transform.position, out hit, UnityEngine.AI.NavMesh.AllAreas);
+        vision = NavMesh.Raycast(transform.position, Enemy.transform.position, out hit, NavMesh.AllAreas);
 
 
 

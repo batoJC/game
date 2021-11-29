@@ -20,7 +20,13 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = MAX_HEALTH;
+        
+        if(healthBar.name == "MeteorBar"){
+            health = 0;
+        }
+        else{
+            health = MAX_HEALTH;
+        }
     }
 
     // Update is called once per frame
@@ -39,8 +45,25 @@ public class HealthBar : MonoBehaviour
     void ColorChanger()
     {
 
-        Color healthColor = Color.Lerp(Color.red, Color.green, (health / MAX_HEALTH));
-        healthBar.color = healthColor;
+        if(this.name == "FirstPersonCharacter"){
+            if(healthBar.name == "HealthBar"){
+                Color healthColor = Color.Lerp(Color.red, Color.green, (health / MAX_HEALTH));
+                healthBar.color = healthColor;
+            }
+            if(healthBar.name == "MeteorBar"){
+                Color healthColor = Color.Lerp(Color.red, Color.yellow, (health / MAX_HEALTH));
+                healthBar.color = healthColor;
+            }
+            
+        }
+        if(this.name == "REAPER_LEGACY"){
+            if(healthBar.name == "BossHealthBar"){
+                Color healthColor = Color.Lerp(Color.red, Color.gray, (health / MAX_HEALTH));
+                healthBar.color = healthColor;
+            }
+           
+        }
+        
     }
 
     public void Damage(float damagePoints)
@@ -50,13 +73,27 @@ public class HealthBar : MonoBehaviour
         }
         else{
             
-            //Reiniciar Juego en caso de que se acabe la vida
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            //Reiniciar la escena en caso de que al jugador se le acabe la vida
+            if(this.name == "FirstPersonCharacter" && healthBar.name == "HealthBar"){
+                
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+
+            }
+            if(this.name == "REAPER_LEGACY"){
+                this.GetComponent<Animator>().SetBool("die",true);
+            }
+            
         };
+
+        
     }
 
     public void Heal(float healingPoints)
     {
-        if (health < MAX_HEALTH) health += healingPoints;
+        if (health <= MAX_HEALTH) health += healingPoints;
+    }
+
+    public float GetHealth(){
+        return this.health;
     }
 }
