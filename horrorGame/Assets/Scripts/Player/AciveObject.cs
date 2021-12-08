@@ -9,11 +9,11 @@ public class AciveObject : MonoBehaviour
 
      public GameObject Player;
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,11 +27,11 @@ public class AciveObject : MonoBehaviour
         foreach (Transform child in this.transform)
          {
 
-            if((MeteorBar <= 0) && ((BossHealth >=70 && BossHealth <=75) || BossHealth>= 20 && BossHealth <= 25 )){
+            if((MeteorBar <= 0) && ((BossHealth >=70 && BossHealth <=75)|| BossHealth>= 40 && BossHealth <= 60 || BossHealth>= 20 && BossHealth <= 25 )){
                 child.gameObject.SetActive(true);
             }
         }
     }
 
-   
+
 }

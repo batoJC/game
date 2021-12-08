@@ -208,12 +208,12 @@ namespace DigitalRuby.PyroParticles
             GameObject.Destroy(obj, 4.0f);
 
             if(col.collider.name == "REAPER_LEGACY"){
-               col.gameObject.GetComponent<HealthBar>().Damage(5.0f);
-              
+               col.gameObject.GetComponent<HealthBar>().Damage(8.0f);
             }
+
             HealthBar[] bars = GameObject.Find("FirstPersonCharacter").GetComponents<HealthBar>();
             bars[1].Damage(0.2f);
-            
+
         }
     }
 }

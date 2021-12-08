@@ -51,7 +51,7 @@ namespace DigitalRuby.PyroParticles
         private bool collided;
 
         [Tooltip("Cantidad de daño que causa este proyectil a los enemigos")]
-        private float damage = 33.33f;
+        private float damage = 40.33f;
 
 
         private IEnumerator SendCollisionAfterDelay()
@@ -79,7 +79,7 @@ namespace DigitalRuby.PyroParticles
                 if (c.collider.tag == "Enemy")
                 {
                     c.gameObject.GetComponent<EnemyHealth>().Damage(damage);
-                    
+
                 }
                 if(c.collider.name == "REAPER_LEGACY"){
                     c.gameObject.GetComponent<HealthBar>().Damage(damage/100);

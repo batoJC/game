@@ -19,6 +19,7 @@ public class RotatableObject : MonoBehaviour
     public char Axis;
     private HealthBar healthScript;
     private CountObjects foundScript;
+    private bool counted = false;
 
 
     // Start is called before the first frame update
@@ -62,7 +63,10 @@ public class RotatableObject : MonoBehaviour
             print("collitions");
             healthScript.Heal(health);
             Destroy(gameObject,1);
-            foundScript.foundObjects++;
+            if(!this.counted){
+                this.counted = true;
+                foundScript.foundObjects++;
+            }
         }
     }
 }

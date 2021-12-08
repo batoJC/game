@@ -5,6 +5,9 @@ using UnityEngine;
 public class CountObjects : MonoBehaviour
 {
     public int foundObjects = 0;
+
+     AsyncOperation async;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,15 @@ public class CountObjects : MonoBehaviour
     void Update()
     {
         if(this.foundObjects > 6){
-            print("Combatir con el boss");
+            StartCoroutine(LoadScene());
         }
+    }
+
+    IEnumerator LoadScene()
+    {
+
+        async = Application.LoadLevelAsync("BossScene");
+
+        yield return async;
     }
 }

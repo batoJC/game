@@ -36,7 +36,7 @@ namespace DigitalRuby.PyroParticles
         private void UpdateMovement()
         {
             float speed = 5.0f * Time.deltaTime;
-             
+
              /*
             if (Input.GetKey(KeyCode.W))
             {
@@ -72,7 +72,7 @@ namespace DigitalRuby.PyroParticles
                 else
                 {
                     Camera.main.rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
-                }                
+                }
             }
         }
 
@@ -127,12 +127,12 @@ namespace DigitalRuby.PyroParticles
                 if(Prefabs[currentPrefabIndex].name != "MeteorSwarm"){
                     StartCurrent();
                 }
-                   
+
             }
-            else if (Input.GetKeyDown(KeyCode.P))
+            else if (Input.GetKeyDown(KeyCode.Q))
             {
                 NextPrefab();
-                
+
             }
             else if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
             {
