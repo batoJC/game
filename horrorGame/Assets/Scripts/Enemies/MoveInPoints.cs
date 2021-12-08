@@ -186,14 +186,6 @@ public class MoveInPoints : MonoBehaviour
     anim.SetBool("die", true);
   }
 
-  private void OnTriggerEnter(Collider other)
-  {
-    if (other.name == "FPSController")
-    {
-      print("quitar vida");
-    }
-  }
-
   private void nextPoint()
   {
     this.indexPoint++;
